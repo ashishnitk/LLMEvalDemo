@@ -16,6 +16,7 @@ def test_ui_loads_fixture_and_displays_no_fake_scores(
     monkeypatch.setattr(storage, "RESULTS_DIR", tmp_path)
     app = AppTest.from_file(str(APP)).run(timeout=30)
     assert not app.exception
+    assert all("agenda" not in expander.label.lower() for expander in app.expander)
     button = next(button for button in app.button if button.label == "Load controlled example")
     button.click().run(timeout=30)
     assert not app.exception

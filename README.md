@@ -1,11 +1,11 @@
 # RAG Eval Lab
 
-A 60-minute, local-first workshop for a mixed technical and business audience.
+A local-first RAG evaluation lab for students.
 The demo compares actual retrieved evidence, generated answers, and DeepEval judge
 assessments using entirely fictional company policies.
 
-For the illustrated architecture, Streamlit walkthrough, Windows setup and
-presenter guide, see the [12-page PDF guide](docs/RAG_Eval_Lab_Architecture_and_Setup.pdf).
+For the illustrated architecture, Streamlit walkthrough and Windows setup,
+see the [11-page PDF guide](docs/RAG_Eval_Lab_Architecture_and_Setup.pdf).
 
 ## Quick start on Windows
 
@@ -42,10 +42,10 @@ ollama list
 Ollama normally starts its local service after installation. If necessary, run
 `ollama serve` in a separate terminal. Use **Check local Ollama** in the sidebar.
 The generator and judge names must exactly match names listed by `ollama list`.
-The default is a starting point, not a certified judge recommendation. Rehearse
+The default is a starting point, not a certified judge recommendation. Test
 on your hardware; model memory usage and evaluation latency can be substantial.
 The same model can fill both roles; an independent stronger judge is preferable
-when available. Download all models before an offline presentation.
+when available. Download all models before offline use.
 
 1. In **Live RAG**, select a case and generate baseline, retrieval-improved and/or
    improved answers.
@@ -108,7 +108,7 @@ but is still an LLM judgment, not a proof. Audit references and reasons with
 humans, repeat representative cases, calibrate thresholds and inspect latency.
 Citations are requested, not programmatically verified by these metrics.
 
-## CLI, rehearsals and regression gates
+## CLI and regression gates
 
 Prepare offline, explicitly unscored fixtures:
 
@@ -155,24 +155,6 @@ flattened metric export. Replays retain the original mode and timestamps.
 Keep CLI output names distinct: the default `latest.json` is overwritten.
 The UI writes its history to `results\session.json`.
 
-## Presenter runbook
-
-| Minute | Action |
-|---|---|
-| 0–5 | Load `unsupported`. Invite a trust vote before revealing the evidence. |
-| 5–12 | Show question → retrieved passages → answer. Separate retriever from generator. |
-| 12–20 | Explain the four standard metrics and the current-policy rubric. |
-| 20–30 | Evaluate 2–3 fixtures live. Read reasons, not only scores. |
-| 30–40 | Contrast `retrieval-miss`, `outdated`, and `bad-abstention`. |
-| 40–49 | Generate/evaluate the same question under all three configurations. Compare. |
-| 49–55 | Show a gate and inspect its failing case or judge error. |
-| 55–60 | Discuss calibration, held-out cases, cost/latency and Q&A. |
-
-Before presenting: pin dependencies, download models, check the local service,
-rehearse judge quality and timing, and save actual full-suite results.
-Run only 2–3 cases live; load saved results for the rest and explicitly call them
-replays. The app does not ship with made-up benchmark scores.
-
 ## Validation
 
 ```powershell
@@ -188,12 +170,3 @@ Mocked judge tests validate plumbing, not real model quality.
 The real DeepEval metric classes are also exercised with synthetic structured
 Ollama transport responses while socket connections are blocked. This verifies
 the installed API integration, not semantic scoring by an actual local model.
-
-## References
-
-- [DeepEval Ollama integration](https://deepeval.com/integrations/models/ollama)
-- [Answer relevancy](https://deepeval.com/docs/metrics-answer-relevancy)
-- [Faithfulness](https://deepeval.com/docs/metrics-faithfulness)
-- [Contextual recall](https://deepeval.com/docs/metrics-contextual-recall)
-- [Contextual precision](https://deepeval.com/docs/metrics-contextual-precision)
-- [G-Eval](https://deepeval.com/docs/metrics-llm-evals)

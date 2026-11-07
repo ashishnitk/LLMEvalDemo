@@ -175,7 +175,7 @@ def main() -> None:
         st.session_state.active = None
     st.title("RAG Eval Lab")
     st.markdown("### Your answer sounds right. Can you prove it?")
-    st.caption("Synthetic company policies | Local Python + Ollama + DeepEval | 60-minute workshop")
+    st.caption("Synthetic company policies | Local Python + Ollama + DeepEval")
     with st.sidebar:
         st.header("Local model settings")
         url = st.text_input("Ollama URL", DEFAULT_URL)
@@ -183,7 +183,7 @@ def main() -> None:
         judge_model = st.text_input("Judge model", DEFAULT_MODEL)
         k = st.slider("Retrieved passages (k)", 1, len(corpus.documents), 3)
         threshold = st.slider("Illustrative pass threshold", 0.0, 1.0, 0.7, 0.05)
-        st.caption("A judge may make multiple model calls per metric. Rehearse latency.")
+        st.caption("A judge may make multiple model calls per metric. Evaluation can take time.")
         if st.button("Check local Ollama"):
             try:
                 installed = OllamaClient(url, generator_model).models()
@@ -218,18 +218,6 @@ def main() -> None:
         st.caption(
             "These fixtures isolate failure modes. They do not simulate natural model errors."
         )
-        with st.expander("60-minute presenter agenda"):
-            st.markdown(
-                "1. **0–5:** Show the unsupported hotel answer and ask for a trust vote.\n"
-                "2. **5–12:** Inspect question, retrieved evidence, and answer.\n"
-                "3. **12–20:** Explain four metrics plus the policy correctness rubric.\n"
-                "4. **20–30:** Score 2–3 examples and read the judge reasons.\n"
-                "5. **30–40:** Contrast retrieval miss, unsupported answer and outdated source.\n"
-                "6. **40–49:** Compare baseline, retrieval-only and full improvement live runs.\n"
-                "7. **49–55:** Run the CLI gate; deliberately broken fixtures should fail.\n"
-                "8. **55–60:** Discuss limitations, holdout cases and next steps."
-            )
-
     with live_tab:
         st.subheader("Run the actual pipeline")
         st.write(

@@ -7,6 +7,9 @@ assessments using entirely fictional company policies.
 For the illustrated architecture, Streamlit walkthrough and Windows setup,
 see the [11-page PDF guide](docs/RAG_Eval_Lab_Architecture_and_Setup.pdf).
 
+For a plain-English explanation of the four tabs, settings, results and a complete
+application demo, see the [application walkthrough](docs/APPLICATION_WALKTHROUGH.md).
+
 ## Quick start on Windows
 
 Python 3.11+ is required. From this directory in PowerShell:
